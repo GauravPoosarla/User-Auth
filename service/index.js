@@ -27,6 +27,7 @@ exports.loginUser = async (email, password) => {
   }
   
   const jwtToken = jwt.sign(payload, 'secret', { expiresIn: '1h' });
+  await redisClient.set(email, jwtToken);
   return jwtToken;
 };
 
@@ -36,5 +37,10 @@ exports.validateToken = async (token) => {
   if(!user) {
     throw new Error('User not found');
   }
+  const savedToken = await redisClient.get(user.email);
+  if (savedToken !== token) {
+    throw new Error('Invalid token');
+  }
+  
   return user;
 }
