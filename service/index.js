@@ -31,7 +31,6 @@ exports.loginUser = async (email, password) => {
 };
 
 exports.validateToken = async (token) => {
-  console.log(token);
   const decoded = jwt.verify(token, 'secret');
   const user = await db.User.findOne({ where: { email: decoded.email } });
   if(!user) {

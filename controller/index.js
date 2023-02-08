@@ -15,7 +15,7 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.validateToken = async (req, res) => {
-  const token = req.body.token;
+  const token = req.header('token');
   try {
     const user = await service.validateToken(token);
     res.status(200).json(user);
