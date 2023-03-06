@@ -4,7 +4,9 @@ const { createClient } = require("redis");
 
 const config = {
   host: "redis",
+  url: "redis://redis:6379",
 };
+
 global.redisClient = createClient(config);
 
 redisClient.on("error", (err) => {
