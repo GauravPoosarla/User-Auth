@@ -13,11 +13,13 @@ RUN npm install
 # install redis
 # RUN apk add --update redis
 
+ENV NODE_ENV=docker
+
 # copy source code
 COPY . .
 
 # expose port
-EXPOSE  8080
+EXPOSE  8000
 
 # start app
 CMD ["node", "index.js"]

@@ -3,6 +3,13 @@
     "username": "postgres",
     "password": null,
     "database": "users",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "docker": {
+    "username": "postgres",
+    "password": null,
+    "database": "users",
     "host": "docker.for.mac.localhost",
     "dialect": "postgres"
   },
