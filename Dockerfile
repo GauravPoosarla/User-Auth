@@ -21,8 +21,5 @@ COPY . .
 # expose port
 EXPOSE  8000
 
-# run migration
-RUN npx sequelize-cli db:migrate
-
 # start app
 CMD ["node", "index.js"]
