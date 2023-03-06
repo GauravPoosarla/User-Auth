@@ -1,10 +1,17 @@
 version: "3"
 services:
+  redis:
+    image: redis
+    restart: always
+    container_name: redis
+    ports:
+      - "6380:6379"
+
   db:
-    container_name: database
     image: postgres
+    restart: always
     environment:
-      POSTGRES_PASSWORD: null
+      POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: users
     ports:
@@ -12,6 +19,9 @@ services:
     
   server:
     build: .
+    depends_on:
+      - db
+      - redis
     ports:
       - "8000:8000"
     environment:

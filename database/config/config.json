@@ -10,7 +10,7 @@
     "username": "postgres",
     "password": null,
     "database": "users",
-    "host": "docker.for.mac.localhost",
+    "host": "db",
     "dialect": "postgres"
   },
   "test": {

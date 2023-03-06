@@ -3,10 +3,7 @@ const controller = require("./controller");
 const { createClient } = require("redis");
 
 const config = {
-  socket: {
-    host: "docker.for.mac.localhost",
-    port: 6379,
-  },
+  host: "redis",
 };
 global.redisClient = createClient(config);
 
