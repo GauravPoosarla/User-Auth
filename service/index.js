@@ -9,18 +9,21 @@ exports.createUser = async (email, password) => {
     password: hash,
   };
   const result = await db.User.create(user);
+  if(!result) {
+    throw new Error('User not created');
+  }
   return result;
 }
 
 exports.loginUser = async (email, password) => {
   const user = await db.User.findOne({ where: { email } });
-  const payload = {
-    email: user.email,
-  };
-
   if (!user) {
     throw new Error('User not found');
   }
+  
+  const payload = {
+    email: user.email,
+  };
   const match = await bcrypt.compare(password, user.password);
   if (!match) {
     throw new Error('Password is incorrect');

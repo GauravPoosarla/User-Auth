@@ -3,15 +3,25 @@ const service = require('../service');
 exports.createUser = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const user = await service.createUser(email, password);
-  res.status(201).json(user);
+  try {
+    const user = await service.createUser(email, password);
+    res.status(200).json(user);
+  }
+  catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 }
 
 exports.loginUser = async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const token = await service.loginUser(email, password);
-  res.status(200).json(token);
+  try {
+    const token = await service.loginUser(email, password);
+    res.status(200).json(token);
+  }
+  catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 }
 
 exports.validateToken = async (req, res) => {
