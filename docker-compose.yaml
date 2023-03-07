@@ -2,6 +2,8 @@ version: "3"
 services:
   redis:
     image: redis
+    ports: 
+      - "6380:6379"
 
   db:
     image: postgres
@@ -12,6 +14,8 @@ services:
       NODE_ENV: docker
     volumes:
       - ./database/data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
 
   migration:
     build: 
@@ -43,3 +47,5 @@ services:
       DB_NAME: users
       DB_PORT: 5432
       NODE_ENV: docker
+      REDIS_HOST: redis
+      REDIS_PORT: 6379

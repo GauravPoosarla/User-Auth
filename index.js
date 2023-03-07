@@ -1,10 +1,13 @@
 const express = require("express");
 const controller = require("./controller");
 const { createClient } = require("redis");
+require("dotenv").config();
 
 const config = {
-  host: "redis",
-  url: "redis://redis:6379",
+  socket: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+  },
 };
 
 global.redisClient = createClient(config);
