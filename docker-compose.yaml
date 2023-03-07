@@ -9,19 +9,25 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: users
+      NODE_ENV: docker
+    volumes:
+      - ./database/data:/var/lib/postgresql/data
 
   migration:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile.migration
     depends_on:
       - db
       - redis
-    command: npx sequelize-cli db:migrate
+
     environment:
       DB_HOST: db
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_NAME: users
       DB_PORT: 5432
+      NODE_ENV: docker
     
   server:
     build: .
@@ -36,3 +42,4 @@ services:
       DB_PASSWORD: postgres
       DB_NAME: users
       DB_PORT: 5432
+      NODE_ENV: docker

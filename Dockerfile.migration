@@ -18,8 +18,7 @@ RUN npm install
 # copy source code
 COPY . .
 
-# expose port
 
 
 # start app
-CMD ["node", "index.js"]
+CMD ["npm", "run", "migrate"]
