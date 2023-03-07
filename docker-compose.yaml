@@ -2,19 +2,13 @@ version: "3"
 services:
   redis:
     image: redis
-    restart: always
-    ports:
-      - "6380:6379"
 
   db:
     image: postgres
-    restart: always
     environment:
-      POSTGRES_PASSWORD: null
+      POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: users
-    ports:
-      - "5433:5432"
 
   migration:
     build: .
@@ -25,7 +19,7 @@ services:
     environment:
       DB_HOST: db
       DB_USER: postgres
-      DB_PASSWORD: null
+      DB_PASSWORD: postgres
       DB_NAME: users
       DB_PORT: 5432
     
@@ -39,6 +33,6 @@ services:
     environment:
       DB_HOST: db
       DB_USER: postgres
-      DB_PASSWORD: null
+      DB_PASSWORD: postgres
       DB_NAME: users
       DB_PORT: 5432
